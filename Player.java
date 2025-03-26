@@ -27,12 +27,12 @@ public class Player {
 
     public Player() {
         Random r = new Random();
-        this.three = r.nextDouble();
-        this.two = r.nextDouble();
-        this.layup = r.nextDouble();
-        this.drive = r.nextDouble();
-        this.shot = r.nextDouble();
-        this.pass = r.nextDouble();
+        this.three = 0.2 + (r.nextDouble() * (0.6 - 0.5));
+        this.two = 0.35 + (r.nextDouble() * (0.75 - 0.35));
+        this.layup = 0.5 + (r.nextDouble() * (0.9 - 0.5));
+        this.drive = 0.05 + (r.nextDouble() * (0.5 - 0.05));
+        this.shot = 0.1 + (r.nextDouble() * (0.65 - 0.1));
+        this.pass = 0.05 + (r.nextDouble() * (0.5 - 0.05));
         condition = 1.0;
     }
 
