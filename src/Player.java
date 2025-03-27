@@ -5,11 +5,12 @@ public class Player {
     private double three;
     private double two;
     private double layup;
+    private double pass;
 
     //Defensive Ratings
     private double drive;
     private double shot;
-    private double pass;
+    private double steal;
 
     //Physical
     private double condition;
@@ -30,9 +31,10 @@ public class Player {
         this.three = 0.2 + (r.nextDouble() * (0.6 - 0.5));
         this.two = 0.35 + (r.nextDouble() * (0.75 - 0.35));
         this.layup = 0.5 + (r.nextDouble() * (0.9 - 0.5));
-        this.drive = 0.05 + (r.nextDouble() * (0.5 - 0.05));
-        this.shot = 0.1 + (r.nextDouble() * (0.65 - 0.1));
-        this.pass = 0.05 + (r.nextDouble() * (0.5 - 0.05));
+        this.pass = 0.65 + (r.nextDouble() * (1.0 - 0.65));
+        this.drive = 0.1 + (r.nextDouble() * (0.65 - 0.1));
+        this.shot = 0.05 + (r.nextDouble() * (0.5 - 0.05));
+        this.steal = 0.05 + (r.nextDouble() * (0.5 - 0.05)); 
         condition = 1.0;
     }
 
@@ -58,6 +60,10 @@ public class Player {
 
     public double getPass() {
         return pass;
+    }
+
+    public double getSteal() {
+        return steal;
     }
 
     public double getCondition() {
@@ -146,7 +152,7 @@ public class Player {
         Random r = new Random();
         double d = r.nextDouble();
 
-        if (d < pass) {
+        if (d < steal) {
             return true;
         } else {
             return false;
