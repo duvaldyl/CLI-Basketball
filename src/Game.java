@@ -63,7 +63,7 @@ public class Game {
             if(i == currRosterIndex) {
                 p[i] = 1.0;
             } else {
-                p[i] = homePlayers[i].getPass() * (1 - awayPlayers[i].getPass());
+                p[i] = homePlayers[i].getPass() * (1 - awayPlayers[i].getSteal());
             }
         }
 
@@ -73,10 +73,11 @@ public class Game {
     public void resetPass() {
         Random r = new Random();
         for(int i = 0; i < 5; i++) {
+            double newPass = 0.75 + (r.nextDouble() * (1.0 - 0.75));
             if(homePossesion) {
-                homePlayers[i].setPass(r.nextDouble());
+                homePlayers[i].setPass(newPass);
             } else {
-                awayPlayers[i].setPass(r.nextDouble());
+                awayPlayers[i].setPass(newPass);
             }
         }
     }
