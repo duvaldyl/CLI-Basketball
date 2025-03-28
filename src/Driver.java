@@ -83,6 +83,11 @@ class Driver {
                     int status = game.shootLayup();
                     processStatus(status);
                     game.changePossesion();
+
+                    if(status == 0) {
+                        System.out.println("INBOUNDING...");
+                    }
+
                 } else if(option == 0) {
                     System.out.println("Select Number of Player to Pass To: ");
                     double[] p = game.calculatePassProb();

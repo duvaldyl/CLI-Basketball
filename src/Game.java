@@ -30,6 +30,8 @@ public class Game {
         awayPoints = 0;
     }
 
+        
+
     public void changePossesion() {
         homePossesion = !homePossesion;
 
@@ -136,6 +138,8 @@ public class Game {
                 awayPoints += 2;
             }
 
+            this.inbound();
+
             return 0;
         } else if(player && defender || !player && defender) {
             return 1;
@@ -157,6 +161,8 @@ public class Game {
                 awayPoints += 3;
             }
 
+            this.inbound();
+
             return 0;
         } else if(player && defender || !player && defender) {
             return 1;
@@ -177,6 +183,8 @@ public class Game {
             } else {
                 awayPoints += 2;
             }
+
+            this.inbound();
 
             return 0;
         } else if(player && defender || !player && defender) {
@@ -217,5 +225,11 @@ public class Game {
             currPlayer = awayPlayers[passIndex];
             currDefender = homePlayers[passIndex];
         }
+    }
+
+
+    public void inbound() {
+        Random r = new Random();
+        this.currRosterIndex = r.nextInt(5);
     }
 }
