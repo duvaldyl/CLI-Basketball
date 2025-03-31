@@ -196,7 +196,7 @@ public class Game {
 
     public int pass(int passIndex) {
         if(passIndex == currRosterIndex) {
-            return 0;
+            return 4;
         }
 
         clock -= 1;
@@ -209,7 +209,7 @@ public class Game {
         resetPass();
 
         if(player && !defender) {
-            return 0;
+            return 3;
         } else if(player && defender || !player && defender) {
             return 1;
         } else {
