@@ -1,0 +1,7 @@
+0 -> Shot Good
+1 -> Blocked
+2 -> Missed
+3 -> Pass Good
+4 -> Cancel
+
+

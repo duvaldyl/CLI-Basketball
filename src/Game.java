@@ -30,6 +30,8 @@ public class Game {
         awayPoints = 0;
     }
 
+        
+
     public void changePossesion() {
         homePossesion = !homePossesion;
 
@@ -137,6 +139,8 @@ public class Game {
                 awayPoints += 2;
             }
 
+            this.inbound();
+
             return 0;
         } else if(p < currPlayer.getShot()) {
             return 1;
@@ -158,6 +162,8 @@ public class Game {
             } else {
                 awayPoints += 3;
             }
+
+            this.inbound();
 
             return 0;
         } else if(p < currPlayer.getShot()) {
@@ -181,6 +187,8 @@ public class Game {
                 awayPoints += 2;
             }
 
+            this.inbound();
+
             return 0;
         } else if(p < currPlayer.getLayup()) {
             return 1;
@@ -191,7 +199,7 @@ public class Game {
 
     public int pass(int passIndex) {
         if(passIndex == currRosterIndex) {
-            return 0;
+            return 4;
         }
 
         Random r = new Random();
@@ -200,11 +208,19 @@ public class Game {
         double p = currPlayer.getPass() * (1 - currDefender.getSteal());
         double d = r.nextDouble();
 
+<<<<<<< HEAD
         if(d <= p) {
             changePlayer(passIndex);
             resetPass();
             return 0;
         } else if(p < currPlayer.getSteal()) {
+=======
+        resetPass();
+
+        if(player && !defender) {
+            return 3;
+        } else if(player && defender || !player && defender) {
+>>>>>>> bf5370c756fbc71d24c6f4c87333b8ba581678d4
             return 1;
         } else {
             return 2;
@@ -219,5 +235,11 @@ public class Game {
             currPlayer = awayPlayers[passIndex];
             currDefender = homePlayers[passIndex];
         }
+    }
+
+
+    public void inbound() {
+        Random r = new Random();
+        this.currRosterIndex = r.nextInt(5);
     }
 }

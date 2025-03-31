@@ -28,11 +28,14 @@ class Driver {
 
     public static void processStatus(int status) {
         if(status == 0) {
-            System.out.println("GOOD");
+            System.out.println("SHOT GOOD");
+            System.out.println("Inbounding...");
         } else if(status == 1) {
             System.out.println("BLOCKED");
-        } else {
+        } else if (status == 2) {
             System.out.println("MISSED");
+        } else if (status == 3) {
+            System.out.println("PASS GOOD");
         }
     }
 
@@ -83,6 +86,7 @@ class Driver {
                     int status = game.shootLayup();
                     processStatus(status);
                     game.changePossesion();
+
                 } else if(option == 0) {
                     System.out.println("Select Number of Player to Pass To: ");
                     double[] p = game.calculatePassProb();
