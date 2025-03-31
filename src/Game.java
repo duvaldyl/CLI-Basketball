@@ -53,7 +53,7 @@ public class Game {
     }
 
     public double calculateLayProb() {
-        double p = (currPlayer.getCondition() * currPlayer.getLayup()) * (1 - currDefender.getLayup());
+        double p = (currPlayer.getCondition() * currPlayer.getLayup()) * (1 - currDefender.getDrive());
         return p;
     }
 
@@ -124,12 +124,13 @@ public class Game {
     }
         
     public int shootTwo() {
+        Random r = new Random();
         clock -= 1;
 
-        boolean player = currPlayer.shootTwo();
-        boolean defender = currDefender.blockShot();
+        double p = currPlayer.getTwo() * (1 - currDefender.getShot());
+        double d = r.nextDouble();
 
-        if(player && !defender) {
+        if(d <= p) {
             if(homePossesion) {
                 homePoints += 2;
             } else {
@@ -137,7 +138,7 @@ public class Game {
             }
 
             return 0;
-        } else if(player && defender || !player && defender) {
+        } else if(p < currPlayer.getShot()) {
             return 1;
         } else {
             return 2;
@@ -145,12 +146,13 @@ public class Game {
     }
 
     public int shootThree() {
+        Random r = new Random();
         clock -= 1;
 
-        boolean player = currPlayer.shootThree();
-        boolean defender = currDefender.blockShot();
+        double p = currPlayer.getThree() * (1 - currDefender.getShot());
+        double d = r.nextDouble();
 
-        if(player && !defender) {
+        if(d <= p) {
             if(homePossesion) {
                 homePoints += 3;
             } else {
@@ -158,7 +160,7 @@ public class Game {
             }
 
             return 0;
-        } else if(player && defender || !player && defender) {
+        } else if(p < currPlayer.getShot()) {
             return 1;
         } else {
             return 2;
@@ -166,12 +168,13 @@ public class Game {
     }
 
     public int shootLayup() {
+        Random r = new Random();
         clock -= 3;
 
-        boolean player = currPlayer.shootLayup();
-        boolean defender = currDefender.blockDrive();
+        double p = currPlayer.getLayup() * (1 - currDefender.getDrive());
+        double d = r.nextDouble();
 
-        if(player && !defender) {
+        if(d <= p) {
             if(homePossesion) {
                 homePoints += 2;
             } else {
@@ -179,7 +182,7 @@ public class Game {
             }
 
             return 0;
-        } else if(player && defender || !player && defender) {
+        } else if(p < currPlayer.getLayup()) {
             return 1;
         } else {
             return 2;
@@ -191,18 +194,17 @@ public class Game {
             return 0;
         }
 
+        Random r = new Random();
         clock -= 1;
 
-        currRosterIndex = passIndex;
-        changePlayer(passIndex);
-        boolean player = currPlayer.pass();
-        boolean defender = currDefender.blockPass();
+        double p = currPlayer.getPass() * (1 - currDefender.getSteal());
+        double d = r.nextDouble();
 
-        resetPass();
-
-        if(player && !defender) {
+        if(d <= p) {
+            changePlayer(passIndex);
+            resetPass();
             return 0;
-        } else if(player && defender || !player && defender) {
+        } else if(p < currPlayer.getSteal()) {
             return 1;
         } else {
             return 2;
