@@ -3,5 +3,7 @@
 2 -> Missed
 3 -> Pass Good
 4 -> Cancel
+5 -> ORB
+6 -> DRB
 
 

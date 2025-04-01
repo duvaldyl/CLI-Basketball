@@ -31,12 +31,12 @@ public class Player {
 
         this.three = 0.2 + (r.nextDouble() * (0.6 - 0.5));
         this.two = 0.35 + (r.nextDouble() * (0.75 - 0.35));
-        this.layup = 0.5 + (r.nextDouble() * (0.9 - 0.5));
-        this.pass = 0.65 + (r.nextDouble() * (1.0 - 0.65));
+        this.layup = 1.0;
+        this.pass = 1.0 + (r.nextDouble() * (1.1 - 1.0));
 
-        this.drive = 0.1 + (r.nextDouble() * (0.65 - 0.1));
+        this.drive = 0.1 + (r.nextDouble() * (0.5 - 0.1));
         this.shot = 0.05 + (r.nextDouble() * (0.5 - 0.05));
-        this.steal = 0.05 + (r.nextDouble() * (0.5 - 0.05)); 
+        this.steal = 0.00 + (r.nextDouble() * (0.0 - 0.00)); 
 
         this.condition = 1.0;
     }
@@ -73,8 +73,28 @@ public class Player {
         return condition;
     }
 
+    public double getAdjustedThree() {
+        return condition * three;
+    }
+    
+    public double getAdjustedTwo() {
+        return condition * two;
+    }
+
+    public double getAdjustedLayup() {
+        return condition * layup;
+    }
+
+    public double getAdjustedDrive() {
+        return condition * drive;
+    }
+
     public void setCondition(double condition) {
         this.condition = condition;
+    }
+
+    public void lowerCondition(double change) {
+        this.condition -= change;
     }
 
     public void setPass(double pass) {
