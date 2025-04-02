@@ -29,10 +29,10 @@ public class Player {
     public Player() {
         Random r = new Random();
 
-        this.three = 0.2 + (r.nextDouble() * (0.6 - 0.5));
+        this.three = 0.2 + (r.nextDouble() * (0.6 - 0.2));
         this.two = 0.35 + (r.nextDouble() * (0.75 - 0.35));
         this.layup = 1.0;
-        this.pass = 1.0 + (r.nextDouble() * (1.1 - 1.0));
+        this.pass = 0.8 + (r.nextDouble() * (1.0 - 0.8));
 
         this.drive = 0.1 + (r.nextDouble() * (0.5 - 0.1));
         this.shot = 0.05 + (r.nextDouble() * (0.5 - 0.05));

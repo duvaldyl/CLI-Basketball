@@ -77,7 +77,7 @@ public class Game {
     public void resetPass() {
         Random r = new Random();
         for(int i = 0; i < 5; i++) {
-            double newPass = 1.0 + (r.nextDouble() * (1.1 - 1.0));
+            double newPass = 0.8 + (r.nextDouble() * (1.0 - 0.8));
             if(homePossesion) {
                 homePlayers[i].setPass(newPass);
             } else {
@@ -128,10 +128,13 @@ public class Game {
         
     public int shootTwo() {
         Random r = new Random();
+
         clock -= 1;
+        currPlayer.lowerCondition(0.01);
 
         double p = currPlayer.getTwo() * (1 - currDefender.getShot());
         double d = r.nextDouble();
+        System.out.println("NUMBER GENERATED: " + d);
 
         if(d <= p) {
             if(homePossesion) {
@@ -152,10 +155,13 @@ public class Game {
 
     public int shootThree() {
         Random r = new Random();
+
         clock -= 1;
+        currPlayer.lowerCondition(0.01);
 
         double p = currPlayer.getThree() * (1 - currDefender.getShot());
         double d = r.nextDouble();
+        System.out.println("NUMBER GENERATED: " + d);
 
         if(d <= p) {
             if(homePossesion) {
@@ -178,10 +184,11 @@ public class Game {
         Random r = new Random();
 
         clock -= 3;
-        currPlayer.lowerCondition(0.01);
+        currPlayer.lowerCondition(0.05);
 
         double p = currPlayer.getLayup() * (1 - currDefender.getDrive());
         double d = r.nextDouble();
+        System.out.println("NUMBER GENERATED: " + d);
 
         if(d <= p) {
             if(homePossesion) {
@@ -210,6 +217,9 @@ public class Game {
 
         double p = currPlayer.getPass() * (1 - currDefender.getSteal());
         double d = r.nextDouble();
+
+        System.out.println("NUMBER GENERATED: " + d);
+
         resetPass();
 
         if(d <= p) {
